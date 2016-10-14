@@ -46,6 +46,10 @@ mapData = ds.t2m.sel(time='1979-01-01T06:00:00')
 ~~~
 {: .python}
 
+<br>
+<img src="../fig/1dPlot.png" width = "600" border = "10">
+<br>
+
 Note that in the above label-based lookup, we left did not specify the latitude and longitude dimensions, in which case xarray assumes we want to return all elements in those dimensions.
 
 Now, similar to what we did for 1-D plots, simply call do the following to generate a map:
@@ -54,6 +58,10 @@ Now, similar to what we did for 1-D plots, simply call do the following to gener
 mapData.plot()
 ~~~
 {: .python}
+
+<br>
+<img src="../fig/2dPlot.png" width = "600" border = "10">
+<br>
 
 Customization can occur following standard Matplotlib syntax:
 
@@ -66,4 +74,9 @@ plt.tight_layout()
 plt.show()
 ~~~
 {: .python}
+
+
+<br>
+<img src="../fig/2dPlotEnhanced.png" width = "600" border = "10">
+<br>
 
