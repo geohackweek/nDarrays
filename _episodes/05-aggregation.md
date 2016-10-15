@@ -1,7 +1,7 @@
 ---
 title: "arithmetic and aggregation"
-teaching: 10
-exercises: 5
+teaching: 15
+exercises: 10
 questions:
 - "How do I perform simple arithmetic operations on xarray objects?"
 - "How do I calculate statistics along a dimension of an xarray object?"
@@ -13,7 +13,7 @@ keypoints:
 
 ### Arithmetic 
 
-Suppose we want to plot the difference in air temperature between January 1 in 1979 versus 1980. We can do this by taking advantage of xarray's labeled dimensions to simplify arithmetic operations on DataArray objects:
+Suppose we want to plot the difference in air temperature between January 1 in 1979 versus 1980. We can do this by taking advantage of xarray's labeled dimensions to simplify arithmetic operations on `DataArray` objects:
 
 ~~~
 Temperature1 = ds.t2m.sel(time='1979-01-01T06:00:00')
@@ -31,7 +31,7 @@ Note that the subtraction is automatically vectorized over all array values, as 
 
 ### Mathematical functions
 
-Now, sometimes we need to apply mathematical functions to array data in our analysis. A good example is wind data, which are often distributed as orthogonal "u" and "v" wind components. To calculate the wind magnitude we need to take the square root of the sum of the squares. For this we use numpy [ufunc](http://docs.scipy.org/doc/numpy/reference/ufuncs.html) commands that can operate on data arrays. Let's look at our wind datasets:
+Now, sometimes we need to apply mathematical functions to array data in our analysis. A good example is wind data, which are often distributed as orthogonal "u" and "v" wind components. To calculate the wind magnitude we need to take the square root of the sum of the squares. For this we use numpy [ufunc](http://docs.scipy.org/doc/numpy/reference/ufuncs.html) commands that can operate on a `DataArray`. Let's look at our wind datasets:
 
 ~~~
 import xarray.ufuncs as xu
@@ -40,7 +40,7 @@ windspeed = xu.sqrt(wind.u10**2+wind.v10**2)
 ~~~
 {: .python}
 
-Notice we introduced something new in opening our data. Since we need two netcdf files, we used xarray's [open_mfdataset](http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html?highlight=open_mfdataset), which allows us to read any number of netcdf files into a single DataSet. Here we use a wildcard search to find the two wind datasets. Note that xarray exposes a wide range of mathematical functions this way, including sin, cos, etc.
+Notice we introduced something new in opening our data. Since we need to acess two NetCDF files, we used xarray's [open_mfdataset](http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html?highlight=open_mfdataset), which allows us to read any number of netcdf files into a single `Dataset`. Here we use a wildcard search to find the two wind datasets. Note that xarray exposes a wide range of mathematical functions this way, such as  `sin`, `cos`, etc.
 
 Now to plot the data:
 
@@ -62,14 +62,14 @@ plt.quiver(X, Y, wind.u10.values, wind.v10.values)
 
 ### Aggregation
 
-Aggregration methods can be applied to a Data Array over a specified dimension. Suppose we want to calculate the average June/July/August temperature for a particular year. We'll create a Data Array that slices out those months of data for a particular year:
+Aggregration methods can be applied to a `DataArray` over a specified dimension. Suppose we want to calculate the average June/July/August temperature for a particular year. Let's create a `DataArray` that slices out those months of data for a particular year:
 
 ~~~  
 JJA = ds.t2m.sel(time=slice('1979-06-01T06:00:00','1979-09-01T06:00:00')) 
 ~~~
 {: .python}
 
-Now we simply appply the "mean" aggregation method over the time dimension and plot the result:
+Now we simply appply the `mean` aggregation method over the time dimension and plot the result:
 
 ~~~~
 JJA.mean(dim='time').plot()
