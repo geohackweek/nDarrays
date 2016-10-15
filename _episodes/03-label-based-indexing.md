@@ -13,7 +13,7 @@ keypoints:
 
 ### Indexing
 
-Indexing is used to select specific elements from xarray files. Let's select some data from the 2-meter temperature DataArray. We know from the previous lesson that this DataArray has dimensions of time and two dimensional space. 
+Indexing is used to select specific elements from xarray files. Let's select some data from the 2-meter temperature `DataArray`. We know from the previous lesson that this `DataArray` has dimensions of time and two dimensional space. 
 
 You are probably already used to conventional ways of indexing an array. You will know in advance that the first array index is time, the second is latitude, and so on. You would then use [positional indexing](http://xarray.pydata.org/en/stable/indexing.html)):
 

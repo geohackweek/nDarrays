@@ -28,14 +28,20 @@ timeSeries.plot()
 ~~~
 {: .python}
 
-Your plots can be customized using syntax that is very similar to Matplotlib. For example:
+<br>
+<img src="../fig/simple1D.png" width = "500" border = "10">
+<br>
+
+Your plots can be [customized](http://xarray.pydata.org/en/stable/plotting.html) using syntax that is very similar to Matplotlib. For example:
 
 ~~~
-timeSeries.plot.line('b-^')
+timeSeries.plot.line(color = 'green', marker = 'o')
 ~~~
 {: .python}
 
-See [here] for additional details on customizing your plots.
+<br>
+<img src="../fig/1dPlot_green.png" width = "500" border = "10">
+<br>
 
 ### Plotting data in 2 dimensions
 
@@ -45,10 +51,6 @@ Since many xarray applications involve geospatial datasets, xarray's plotting ex
 mapData = ds.t2m.sel(time='1979-01-01T06:00:00')
 ~~~
 {: .python}
-
-<br>
-<img src="../fig/1dPlot.png" width = "600" border = "10">
-<br>
 
 Note that in the above label-based lookup, we left did not specify the latitude and longitude dimensions, in which case xarray assumes we want to return all elements in those dimensions.
 

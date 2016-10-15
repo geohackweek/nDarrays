@@ -73,7 +73,7 @@ ds = xarray.open_dataset('<rootDir>/airtemp_global.nc', engine = 'scipy')
 ~~~
 {: .python}
 
-(__NOTE__: here and elsewhere, replace "<rootDir>" with the full path to your own data directory)
+(__NOTE__: here and elsewhere, replace `<rootDir>` with the full path to your own data directory)
 
 You'll notice this seemed to go very fast. That is because this step does not actually ask Python to read the data into memory. Rather, Python is just scanning the contents of the file. This is called _lazy evaluation_. 
 
