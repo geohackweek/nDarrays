@@ -24,7 +24,7 @@ delta.plot()
 {: .python}
 
 <br>
-<img src="../fig/delTemperature.png" width = "600" border = "10">
+<img src="../fig/delTemperature.png" width = "500" border = "10">
 <br>
 
 Note that the subtraction is automatically vectorized over all array values, as in numpy.
@@ -57,7 +57,7 @@ plt.quiver(X, Y, wind.u10.values, wind.v10.values)
 
 
 <br>
-<img src="../fig/windAK.png" width = "600" border = "10">
+<img src="../fig/windAK.png" width = "500" border = "10">
 <br>
 
 ### Aggregation
