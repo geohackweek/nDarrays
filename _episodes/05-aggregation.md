@@ -13,7 +13,7 @@ keypoints:
 
 ### Arithmetic 
 
-xarray takes advantage of labeled dimensions to simplify arithmetic operations on DataArray objects. Suppose we want to plot the difference in air temperature between January 1 in 1979 versus 1980:
+Suppose we want to plot the difference in air temperature between January 1 in 1979 versus 1980. We can do this by taking advantage of xarray's labeled dimensions to simplify arithmetic operations on DataArray objects:
 
 ~~~
 Temperature1 = ds.t2m.sel(time='1979-01-01T06:00:00')
@@ -28,6 +28,37 @@ delta.plot()
 <br>
 
 Note that the subtraction is automatically vectorized over all array values, as in numpy.
+
+### Mathematical functions
+
+Now, sometimes we need to apply mathematical functions to array data in our analysis. A good example is wind data, which are often distributed as orthogonal "u" and "v" wind components. To calculate the wind magnitude we need to take the square root of the sum of the squares. For this we use numpy [ufunc](http://docs.scipy.org/doc/numpy/reference/ufuncs.html) commands that can operate on data arrays. Let's look at our wind datasets:
+
+~~~
+import xarray.ufuncs as xu
+wind = xarray.open_mfdataset(r'c:/work/mnt/ecmwf/*wind_AK.nc').sel(time="1984-01-01")
+windspeed = xu.sqrt(wind.u10**2+wind.v10**2)
+~~~
+{: .python}
+
+Notice we introduced something new in opening our data. Since we need two netcdf files, we used xarray's [open_mfdataset](http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html?highlight=open_mfdataset), which allows us to read any number of netcdf files into a single DataSet. Here we use a wildcard search to find the two wind datasets. Note that xarray exposes a wide range of mathematical functions this way, including sin, cos, etc.
+
+Now to plot the data:
+
+~~~
+windspeed.plot(cmap=plt.cm.Blues)
+plt.title('ECMWF wind speed and direction, June 1, 1984')
+plt.ylabel('latitude')
+plt.xlabel('longitude')
+X = windspeed.coords['longitude'].values
+Y = windspeed.coords['latitude'].values
+plt.quiver(X, Y, wind.u10.values, wind.v10.values)
+~~~
+{: .python}
+
+
+<br>
+<img src="../fig/windAK.png" width = "600" border = "10">
+<br>
 
 ### Aggregation
 
