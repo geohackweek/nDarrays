@@ -41,6 +41,7 @@ ds = xarray.open_mfdataset(r'c:/work/mnt/ecmwf/*_global.nc', engine = 'scipy', c
 Without specifying chunk size, open_mfdataset chunks along existing dimensions. Getting the chunk size right is the crucial step to optimize working with xarray/dask. We recommend following [this advice](http://xray.readthedocs.org/en/stable/dask.html?highlight=rechunk#chunking-and-performance). You shoud use chunk sizes of about 1 million elements. In our case: 480* 241 = 115680, so make the time chunk 10 to get around 1 million. Note that we are only chunking the time dimension. Choice depends on how you will be working with the data. 
 
 Now when can carry out any processes on the `Dataset`, `dask` will be invoked. It is wise to include the `ProgressBar` tool from  `dask.diagnostics` to track the processing: 
+
 ~~~
 from dask.diagnostics import ProgressBar
 with ProgressBar():

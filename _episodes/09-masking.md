@@ -63,7 +63,7 @@ ds
 {: .python}
 
 <br>
-<img src="../fig/dsContentMask.png" width = "500" border = "10">
+<img src="../fig/dsContentsMask.png" width = "500" border = "10">
 <br>
 
 Now that the mask is integrated into the coordinates, we can easily apply the mask using `where()`. We can integrate this with statistical functions operating on the array:
@@ -75,7 +75,7 @@ with ProgressBar():
 {: .python}
 
 <br>
-<img src="../fig/dsContentMask.png" width = "500" border = "10">
+<img src="../fig/t2mLand.png" width = "500" border = "10">
 <br>
 
 > ## Calculating a climate index 
