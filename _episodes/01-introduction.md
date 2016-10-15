@@ -1,6 +1,6 @@
 ---
 title: "Introduction to multidimensional arrays"
-teaching: 15
+teaching: 10
 exercises: 0
 questions:
 - "When do we need to use multidimensional arrays?"
@@ -15,7 +15,7 @@ keypoints:
 ---
 ### Overview:
 
-Unlabelled, N-dimensional arrays of numbers, such as NumPy's ndarray, are the most widely used data structure in scientific computing. Geoscientists have a particular need for structuring their data as arrays. A common example is gridded data consisting of a set of climate variables (e.g. temperature and precipitation) that varies in space and time. Often we need to subset a large global dataset to look at data for a particular region, or select a specific time slice. Then we might want to apply statistical functions to these subsetted groups to generate summary information.
+Unlabelled, N-dimensional arrays of numbers, such as NumPy's ndarray, are the most widely used data structure in scientific computing. Geoscientists have a particular need for structuring their data as arrays. For example, we commonly work with sets of climate variables (e.g. temperature and precipitation) that vary in space and time and are represented on a regularly-spaced grid. Often we need to subset a large global grid to look at data for a particular region, or select a specific time slice. Then we might want to apply statistical functions to these subsetted groups to generate summary information.
 
 <br>
 <img src="http://xray.readthedocs.org/en/stable/_images/dataset-diagram.png" width = "800" border = "10">
@@ -28,7 +28,7 @@ Unlabelled, N-dimensional arrays of numbers, such as NumPy's ndarray, are the mo
 > of time and space. See the raster tutorials for tools that are optimized for image processing of remote sensing datasets.
 {: .callout}
 
-### Working with Unlabelled Arrays
+### Conventional Approach: Working with Unlabelled Arrays
 
 Multidimensional array data are often stored in user-defined binary formats, and distributed with custom Fortran 
 or C++ libraries used to read and process the data. Users are responsbile for setting up their own file structures and custom codes to handle these files. Subsetting the data involves reading everything into an in-memory array, and then using a series of nested loops with conditional statements to look for a specific range of index values associated with the temporal or spatial slice needed. Also, clever use of matrix algebra is often used to summarize data across spatial and temporal dimensions.
@@ -37,12 +37,11 @@ or C++ libraries used to read and process the data. Users are responsbile for se
 
 The biggest challenge in working with N-dimensional arrays in this fashion is the fact that the data are almost disassociated from their metadata. Users are left with the task of tracking the meaning behind array indices using domain-specific software, often leading to inefficiencies and errors. Common pitfalls often occur in in the form of questions like "is the time axis of my array in the first or third index position?", or "does my array of timestamps still align with my data after resampling?".
 
-### The network Common Data Form
+### The network Common Data Format
 
-The network Common Data Form, or [NetCDF](http://www.unidata.ucar.edu/software/netcdf/docs/), was created in the early 1990s, and set out to solve some of the challenges in working with N-dimensional arrays. Netcdf is a collection of self-describing, machine-independent binary data formats and software tools that facilitate the creation, access and sharing of scientific data stored in N-dimensional arrays, allong with metadata describing the contents of each array. Netcdf was built by the climate science community at a time when regional climate models were beginning to produce larger and larger output files. Another similar format is [hdf](https://www.hdfgroup.org/), which is used for many applications including
-distribution of remote sensing datasets. Hdf5 is actually a superset of netcdf...
+The network Common Data Form, or [NetCDF](http://www.unidata.ucar.edu/software/netcdf/docs/), was created in the early 1990s, and set out to solve some of the challenges in working with N-dimensional arrays. Netcdf is a collection of self-describing, machine-independent binary data formats and software tools that facilitate the creation, access and sharing of scientific data stored in N-dimensional arrays, along with metadata describing the contents of each array. Netcdf was built by the climate science community at a time when regional climate models were beginning to produce larger and larger output files. Another  format, [hdf5](https://www.hdfgroup.org/), has been used for many applications including distribution of remote sensing datasets. It turns out these two formats are now merging, such that the latest version NetCDF-4 is the HDF5 format but with some restrictions. 
 
-One benfit of the netcdf file formats is that they are structured in ways that enable rapid subsetting and anaylsis using simple command line tools. For example, the climate community has developed their own [netcdf toolkits](http://www.unidata.ucar.edu/software/netcdf/software.html) that accomplish tasks like subsetting and grouping. Similar tools exist for [hdf](https://support.hdfgroup.org/HDF5/Tutor/HDF5Intro.pdf). Therefore many researchers utilize these tools exclusively.
+One benfit of Common Data Formats is that they are structured in ways that enable rapid subsetting and anaylsis using simple command line tools. For example, the climate community has developed their own [netcdf toolkits](http://www.unidata.ucar.edu/software/netcdf/software.html) that accomplish tasks like subsetting and grouping. Similar tools exist for [hdf5](https://support.hdfgroup.org/HDF5/Tutor/HDF5Intro.pdf). Therefore many researchers utilize these tools exclusively in their analysis.
 
 ### NetCDF in practice
 

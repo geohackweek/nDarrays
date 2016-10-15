@@ -20,7 +20,7 @@ If you visit the ECMWF page you will find that you can download a large number o
 |:-------------:|:-------------:|:------------:|
 | airtemp_global.nc | 2 meter air temperature | 3.0 |
 | uwind_global.nc | wind blowing to the east | 3.0 |
-| vwind_golbal.nc | wind blowing to the north | 3.0 |
+| vwind_global.nc | wind blowing to the north | 3.0 |
 | SST_global.nc | sea surface temperature | 3.0 |
 | | | |
 | airtemp_AK.nc | 2 meter air temperature | 0.1 |
