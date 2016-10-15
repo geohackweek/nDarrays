@@ -1,6 +1,6 @@
 ---
 title: "label-based indexing"
-teaching: 10
+teaching: 5
 exercises: 5
 questions:
 - "How does the labeling of dimensions enhance the xarray workflow?"

@@ -1,6 +1,6 @@
 ---
 title: "groupby processing"
-teaching: 15
+teaching: 10
 exercises: 5
 questions:
 - "What is groupby processing and in what cases is it useful for scientific analysis of multidimensional arrays?"

@@ -1,6 +1,6 @@
 ---
 title: "xarray architecture"
-teaching: 15
+teaching: 10
 exercises: 5
 questions:
 - "What functionality does the xarray library offer?"

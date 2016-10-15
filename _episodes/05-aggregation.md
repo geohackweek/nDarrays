@@ -1,6 +1,6 @@
 ---
 title: "arithmetic and aggregation"
-teaching: 15
+teaching: 10
 exercises: 10
 questions:
 - "How do I perform simple arithmetic operations on xarray objects?"
