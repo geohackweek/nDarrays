@@ -52,7 +52,7 @@ mapData = ds.t2m.sel(time='1979-01-01T06:00:00')
 ~~~
 {: .python}
 
-Note that in the above label-based lookup, we left did not specify the latitude and longitude dimensions, in which case xarray assumes we want to return all elements in those dimensions.
+Note that in the above label-based lookup, we did not specify the latitude and longitude dimensions, in which case xarray assumes we want to return all elements in those dimensions.
 
 Now, similar to what we did for 1-D plots, simply call do the following to generate a map:
 

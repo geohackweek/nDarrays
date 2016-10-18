@@ -36,7 +36,7 @@ ds.t2m.isel(time=0,latitude=0,longitude=0)
 ~~~
 {: .python}
 
-Here, the *isel* method refers to a selection by integer position. Finally, we can combine the benefits of both a labeled index and a named dimension as follows:
+Here, the `isel` method refers to a selection by integer position. Finally, we can combine the benefits of both a labeled index and a named dimension as follows:
 
 ~~~
 ds.t2m.sel(time='1979-01-01T06:00:00',latitude=0.0,longitude=90.0)
