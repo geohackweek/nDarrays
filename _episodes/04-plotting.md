@@ -13,18 +13,18 @@ keypoints:
 
 ### Plotting data in 1 dimension
 
-Let's start visualzing some of the data slices we've been working on so far. We will begin by creating a new variable for plotting a 1-dimensional time series:
+Let's start visualizing some of the data slices we've been working on so far. We will begin by creating a new variable for plotting a 1-dimensional time series:
 
 ~~~
-timeSeries = ds.t2m.sel(time=slice('1979-01-01T06:00:00','1979-06-01T06:00:00'),latitude=0.0,longitude=0.0)
+time_series = ds['t2m'].sel(time=slice('1979-01-01T06:00:00', '1979-06-01T06:00:00'), latitude=0.0, longitude=0.0)
 ~~~
 {: .python}
 
 xarray has some very simple tools to enable quick visualizations of the data. Try this:
 
 ~~~
-%matplotlib inline  # optional, if using Jupyter-notebooks 
-timeSeries.plot()
+%matplotlib inline  # optional, if using Jupyter-notebooks
+time_series.plot()
 ~~~
 {: .python}
 
@@ -35,7 +35,7 @@ timeSeries.plot()
 Your plots can be [customized](http://xarray.pydata.org/en/stable/plotting.html) using syntax that is very similar to Matplotlib. For example:
 
 ~~~
-timeSeries.plot.line(color = 'green', marker = 'o')
+time_series.plot.line(color='green', marker='o')
 ~~~
 {: .python}
 
@@ -47,8 +47,8 @@ timeSeries.plot.line(color = 'green', marker = 'o')
 
 Since many xarray applications involve geospatial datasets, xarray's plotting extends to maps in 2 dimensions. Let's first select a 2-D subset of our data by choosing a single date and retaining all the latitude and longitude dimensions:
 
-~~~ 
-mapData = ds.t2m.sel(time='1979-01-01T06:00:00')
+~~~
+map_data = ds['t2m'].sel(time='1979-01-01T06:00:00')
 ~~~
 {: .python}
 
@@ -56,8 +56,8 @@ Note that in the above label-based lookup, we did not specify the latitude and l
 
 Now, similar to what we did for 1-D plots, simply call do the following to generate a map:
 
-~~~ 
-mapData.plot()
+~~~
+map_data.plot()
 ~~~
 {: .python}
 
@@ -67,8 +67,8 @@ mapData.plot()
 
 Customization can occur following standard Matplotlib syntax:
 
-~~~ 
-mapData.plot(cmap=plt.cm.Blues)
+~~~
+map_data.plot(cmap=plt.cm.Blues)
 plt.title('ECMWF global air temperature data')
 plt.ylabel('latitude')
 plt.xlabel('longitude')
@@ -81,4 +81,3 @@ plt.show()
 <br>
 <img src="../fig/2dPlotEnhanced.png" width = "600" border = "10">
 <br>
-

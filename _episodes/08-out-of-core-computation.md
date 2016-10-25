@@ -8,7 +8,7 @@ objectives:
 - "understand best practices for reading and storing large gridded datasets"
 - "using multi-threading libraries to facilitate manipulation of larger-than-memory grids"
 keypoints:
-- dask integration with xarray allows you to work with large datasets that "fit on disk" rather than having to "fit in memory". 
+- dask integration with xarray allows you to work with large datasets that "fit on disk" rather than having to "fit in memory".
 - It is important to chunk the data correctly for this to work.
 ---
 
@@ -29,18 +29,18 @@ When xarray carries out processing on an array it must load it into memory. Many
 <img src="http://mrocklin.github.com/blog/images/dask/embarrassing.gif" width = "500" border = "10">
 <br>
 
-## Opening multiple netcdf files, and using Dask
-We will use the [mfdataset](http://xray.readthedocs.org/en/stable/generated/xray.open_mfdataset.html#xray.open_mfdataset) option that opens multiple files as a single xarray dataset. This automatically invokes the dask functionality:
+## Opening multiple netCDF files, and using Dask
+We will use the [mfdataset](http://xarray.pydata.org/en/stable/generated/xarray.open_mfdataset.html#xarray.open_mfdataset) option that opens multiple files as a single xarray dataset. This automatically invokes the dask functionality:
 
 ~~~
-ds = xarray.open_mfdataset(r'c:/work/mnt/ecmwf/*_global.nc', engine = 'scipy', chunks = {'time':10})
+ds = xr.open_mfdataset(r'c:/work/mnt/ecmwf/*_global.nc', engine = 'scipy', chunks = {'time':10})
 ~~~
 {: .python}
 
 ### Chunk sizes:
-Without specifying chunk size, open_mfdataset chunks along existing dimensions. Getting the chunk size right is the crucial step to optimize working with xarray/dask. We recommend following [this advice](http://xray.readthedocs.org/en/stable/dask.html?highlight=rechunk#chunking-and-performance). You shoud use chunk sizes of about 1 million elements. In our case: 480* 241 = 115680, so make the time chunk 10 to get around 1 million. Note that we are only chunking the time dimension. Choice depends on how you will be working with the data. 
+Without specifying chunk size, open_mfdataset chunks along existing dimensions. Getting the chunk size right is the crucial step to optimize working with xarray/dask. We recommend following [this advice](http://xarray.pydata.org/en/stable/dask.html?highlight=rechunk#chunking-and-performance). You should use chunk sizes of about 1 million elements. In our case: 480* 241 = 115680, so make the time chunk 10 to get around 1 million. Note that we are only chunking the time dimension. Choice depends on how you will be working with the data.
 
-Now when can carry out any processes on the `Dataset`, `dask` will be invoked. It is wise to include the `ProgressBar` tool from  `dask.diagnostics` to track the processing: 
+Now when can carry out any processes on the `Dataset`, `dask` will be invoked. It is wise to include the `ProgressBar` tool from  `dask.diagnostics` to track the processing:
 
 ~~~
 from dask.diagnostics import ProgressBar
